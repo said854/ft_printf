@@ -6,7 +6,7 @@
 /*   By: sjoukni <sjoukni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 22:25:54 by sjoukni           #+#    #+#             */
-/*   Updated: 2024/12/02 16:14:21 by sjoukni          ###   ########.fr       */
+/*   Updated: 2024/12/04 14:32:48 by sjoukni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,17 @@ static void	parse_flag_chars(const char **str, t_flags *flags)
 	}
 }
 
-static void	parse_width(const char **str, t_flags *flags, va_list args)
+static void	parse_width(const char **str, t_flags *flags)
 {
 	if (**str >= '1' && **str <= '9')
 	{
-		flags->width = ft_atoi(*str);
+		flags->width = ft_atoi(*str, flags);
 		while (**str >= '0' && **str <= '9')
 			(*str)++;
 	}
-	else if (**str == '*')
-	{
-		flags->width = va_arg(args, int);
-		if (flags->width < 0)
-		{
-			flags->left_justify = 1;
-			flags->width = -flags->width;
-		}
-		(*str)++;
-	}
 }
 
-static void	parse_precision(const char **str, t_flags *flags, va_list args)
+static void	parse_precision(const char **str, t_flags *flags)
 {
 	if (**str == '.')
 	{
@@ -66,26 +56,19 @@ static void	parse_precision(const char **str, t_flags *flags, va_list args)
 		(*str)++;
 		if (**str >= '0' && **str <= '9')
 		{
-			flags->precision = ft_atoi(*str);
+			flags->precision = ft_atoi(*str, flags);
 			while (**str >= '0' && **str <= '9')
 				(*str)++;
-		}
-		else if (**str == '*')
-		{
-			flags->precision = va_arg(args, int);
-			if (flags->precision < 0)
-				flags->is_precision = 0;
-			(*str)++;
 		}
 		else
 			flags->precision = 0;
 	}
 }
 
-void	parse_flags(const char **str, t_flags *flags, va_list args)
+void	parse_flags(const char **str, t_flags *flags)
 {
-	*flags = (t_flags){0, 0, 0, 0, 0, 0, -1, 0};
+	*flags = (t_flags){0, 0, 0, 0, 0, 0, -1, 0, 0, 0};
 	parse_flag_chars(str, flags);
-	parse_width(str, flags, args);
-	parse_precision(str, flags, args);
+	parse_width(str, flags);
+	parse_precision(str, flags);
 }

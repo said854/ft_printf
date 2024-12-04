@@ -6,18 +6,19 @@
 /*   By: sjoukni <sjoukni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 12:20:15 by sjoukni           #+#    #+#             */
-/*   Updated: 2024/12/02 14:11:25 by sjoukni          ###   ########.fr       */
+/*   Updated: 2024/12/04 12:54:00 by sjoukni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_puthex(unsigned int n, const char *base)
+int	ft_puthex(unsigned int n, const char *base)
 {
-	int len = 0;
+	int	len;
+
+	len = 0;
 	if (n >= 16)
 		len += ft_puthex(n / 16, base);
 	ft_putchar(base[n % 16]);
-	return len + 1;
+	return (len + 1);
 }
-

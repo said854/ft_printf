@@ -6,7 +6,7 @@
 /*   By: sjoukni <sjoukni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:38:36 by sjoukni           #+#    #+#             */
-/*   Updated: 2024/12/02 17:40:40 by sjoukni          ###   ########.fr       */
+/*   Updated: 2024/12/04 14:24:44 by sjoukni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static int	handle_string_precision(char *str, t_flags *flags)
 {
 	int	str_len;
 
+	if (flags->check_nul == 1)
+		return (str_len = 0);
 	str_len = ft_strlen(str);
 	if (flags->is_precision && flags->precision >= 0)
 	{
@@ -40,6 +42,10 @@ int	handle_string(va_list args, t_flags *flags)
 	int		padding;
 
 	str = va_arg(args, char *);
+	if (!str && flags->is_precision && flags->precision <= 5 && !flags->width)
+		return (len = 0);
+	if (!str && flags->is_precision && flags->precision <= 5 && flags->width)
+		flags->check_nul = 1;
 	if (!str)
 		str = "(null)";
 	str_len = handle_string_precision(str, flags);

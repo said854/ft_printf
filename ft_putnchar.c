@@ -6,20 +6,21 @@
 /*   By: sjoukni <sjoukni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 22:33:04 by sjoukni           #+#    #+#             */
-/*   Updated: 2024/12/02 14:11:34 by sjoukni          ###   ########.fr       */
+/*   Updated: 2024/12/04 13:07:02 by sjoukni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "ft_printf.h"
 
-int ft_putnchar(char c, int n)
+int	ft_putnchar(char c, int n)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (i < n)
 	{
 		ft_putchar(c);
 		i++;
 	}
-	return n;
+	return (n);
 }

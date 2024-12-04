@@ -1,5 +1,5 @@
-// #include "ft_printf.h"
-// #include <stdio.h>
+#include "ft_printf.h"
+#include <stdio.h>
 
 // int main(void)
 // {
@@ -16,7 +16,6 @@
 //         "{% d}",          // Space
 //         "{%-d}",          // Left-align
 //         "{%#x}",          // Alternate form (hex)
-//         "{%#o}",          // Alternate form (octal)
 //         "{%010d}",        // Zero-padded
 //         "{%+010d}",       // Plus and zero-padding
 //         "{%-+10d}",       // Plus, left-aligned
@@ -48,4 +47,10 @@
 //     }
 
 //     return 0;
+// }
+// int main()
+// {
+//     int n1 = ft_printf("copy is : |%12.d|\n", 0);
+//     int n2 =    printf("orig is : |%12.d|\n", 0);
+//     printf("nC = %d , nO = %d", n1, n2);
 // }

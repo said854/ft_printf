@@ -6,28 +6,26 @@
 /*   By: sjoukni <sjoukni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 22:27:54 by sjoukni           #+#    #+#             */
-/*   Updated: 2024/12/02 17:54:28 by sjoukni          ###   ########.fr       */
+/*   Updated: 2024/12/04 14:23:41 by sjoukni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "ft_printf.h"
 
-int handle_char(va_list args, t_flags *flags)
+int	handle_char(va_list args, t_flags *flags)
 {
-    char c = (char)va_arg(args, int);
-    int len = 0;
+	char	c;
+	int		len;
 
-    if (!flags->left_justify && flags->width > 1)
-        len += ft_putnchar(' ', flags->width - 1);
-    len += ft_putchar(c);
-    if (flags->left_justify && flags->width > 1)
-        len += ft_putnchar(' ', flags->width - 1);
-
-    return len;
+	c = (char)va_arg(args, int);
+	len = 0;
+	if (!flags->left_justify && flags->width > 1)
+		len += ft_putnchar(' ', flags->width - 1);
+	len += ft_putchar(c);
+	if (flags->left_justify && flags->width > 1)
+		len += ft_putnchar(' ', flags->width - 1);
+	return (len);
 }
-
-#include "ft_printf.h"
 
 static int	handle_percent_padding(int width)
 {
@@ -38,12 +36,11 @@ static int	handle_percent_padding(int width)
 
 int	handle_percent(t_flags *flags)
 {
-	int len;
-	int padding;
+	int	len;
+	int	padding;
 
 	len = 0;
 	padding = handle_percent_padding(flags->width);
-
 	if (flags->left_justify)
 	{
 		len += ft_putchar('%');
@@ -56,14 +53,14 @@ int	handle_percent(t_flags *flags)
 			len += ft_putnchar(' ', padding);
 		len += ft_putchar('%');
 	}
-
 	return (len);
 }
 
-int handle_specifier_with_flags(char c, t_flags *flags, va_list args)
+int	handle_specifier_with_flags(char c, t_flags *flags, va_list args)
 {
-	int len = 0;
+	int	len;
 
+	len = 0;
 	if (c == 'd' || c == 'i')
 		len += handle_integer(args, flags);
 	else if (c == 'u')
@@ -80,5 +77,5 @@ int handle_specifier_with_flags(char c, t_flags *flags, va_list args)
 		len += handle_pointer(args, flags);
 	else if (c == '%')
 		len += handle_percent(flags);
-	return len;
+	return (len);
 }

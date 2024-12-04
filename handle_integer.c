@@ -6,7 +6,7 @@
 /*   By: sjoukni <sjoukni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 22:30:52 by sjoukni           #+#    #+#             */
-/*   Updated: 2024/12/04 14:33:06 by sjoukni          ###   ########.fr       */
+/*   Updated: 2024/12/04 15:40:46 by sjoukni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,10 @@
 static int	c_padding(int num_len, t_flags *flags, int precision_p, int num)
 {
 	int	padding;
-	int	padding_type;
 
 	padding = flags->width - num_len - precision_p ;
 	if (num_len < 0 || flags->plus_sign || flags->space_sign || num < 0)
 		padding--;
-	if (flags->zero_padding && !flags->left_justify)
-		padding_type = '0';
-	else
-		padding_type = ' ';
 	if (padding < 0)
 		padding = 0;
 	return (padding);

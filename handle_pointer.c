@@ -6,7 +6,7 @@
 /*   By: sjoukni <sjoukni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:48:49 by sjoukni           #+#    #+#             */
-/*   Updated: 2024/12/02 17:52:19 by sjoukni          ###   ########.fr       */
+/*   Updated: 2024/12/04 15:37:53 by sjoukni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	handle_pointer_left_padding(int ptr_len, t_flags *flags)
 {
 	int	padding;
 
-	padding = flags->width - ptr_len;
+	padding = flags->width - ptr_len - 2;
 	if (flags->left_justify && padding > 0)
 		return (ft_putnchar(' ', padding));
 	return (0);
@@ -45,6 +45,8 @@ int	handle_pointer(va_list args, t_flags *flags)
 
 	ptr = va_arg(args, unsigned long long);
 	len = 0;
+	if (ptr == 0)
+		return (len += ft_putstr("(nil)"));
 	ptr_len = ft_pointer_len(ptr);
 	len += handle_pointer_padding(ptr_len, flags);
 	len += ft_putstr("0x");

@@ -6,7 +6,7 @@
 #    By: sjoukni <sjoukni@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/29 15:37:14 by sjoukni           #+#    #+#              #
-#    Updated: 2024/12/02 17:49:27 by sjoukni          ###   ########.fr        #
+#    Updated: 2024/12/04 15:09:16 by sjoukni          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -f
-HEADER = libftprintf.h
+HEADER = ft_printf.h
 NAME = libftprintf.a
 
 all : $(NAME)
@@ -35,6 +35,8 @@ fclean : clean
 	$(RM) $(NAME)
 
 re : fclean all
+
+bonus : all
 
 .PHONY : all clean fclean re
 

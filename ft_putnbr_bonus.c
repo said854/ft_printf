@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putadresse.c                                    :+:      :+:    :+:   */
+/*   ft_putnbr_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sjoukni <sjoukni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 12:19:54 by sjoukni           #+#    #+#             */
-/*   Updated: 2024/12/05 14:36:10 by sjoukni          ###   ########.fr       */
+/*   Created: 2024/11/28 12:20:21 by sjoukni           #+#    #+#             */
+/*   Updated: 2024/12/04 20:13:57 by sjoukni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
-int	ft_putpointer(unsigned long long ptr)
+int	ft_putnbr(int n)
 {
-	int	len;
+	int	count;
 
-	len = 0;
-	if (ptr >= 16)
-		len += ft_putpointer(ptr / 16);
-	ft_putchar("0123456789abcdef"[ptr % 16]);
-	return (len + 1);
+	count = 0;
+	if (n == -2147483648)
+	{
+		count += write(1, "-2147483648", 11);
+		return (count);
+	}
+	if (n < 0)
+	{
+		count += ft_putchar('-');
+		n = -n;
+	}
+	if (n >= 10)
+		count += ft_putnbr(n / 10);
+	count += ft_putchar((n % 10) + '0');
+	return (count);
 }

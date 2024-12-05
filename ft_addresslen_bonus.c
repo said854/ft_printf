@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putadresse.c                                    :+:      :+:    :+:   */
+/*   ft_addresslen_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sjoukni <sjoukni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 12:19:54 by sjoukni           #+#    #+#             */
-/*   Updated: 2024/12/05 14:36:10 by sjoukni          ###   ########.fr       */
+/*   Created: 2024/11/29 15:21:14 by sjoukni           #+#    #+#             */
+/*   Updated: 2024/12/04 20:12:30 by sjoukni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
-int	ft_putpointer(unsigned long long ptr)
+int	ft_pointer_len(unsigned long long ptr)
 {
 	int	len;
 
 	len = 0;
-	if (ptr >= 16)
-		len += ft_putpointer(ptr / 16);
-	ft_putchar("0123456789abcdef"[ptr % 16]);
-	return (len + 1);
+	if (ptr == 0)
+		return (1);
+	while (ptr > 0)
+	{
+		ptr /= 16;
+		len++;
+	}
+	return (len);
 }
